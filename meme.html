@@ -2,140 +2,230 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>GTA 6 meme — waited 13 years</title>
+<title>make.fun Airlines — Boarding Pass</title>
 <style>
-  html, body { margin: 0; padding: 0; width: 1080px; height: 1080px; overflow: hidden; background: #2b0a4a; }
-  svg { display: block; width: 1080px; height: 1080px; }
-  .cap { font-family: "Arial Black", Arial, sans-serif; font-weight: 900; fill: #ffffff; stroke: #000000; stroke-width: 10; paint-order: stroke; text-anchor: middle; }
-  .neon { font-family: "Arial Black", Arial, sans-serif; font-weight: 900; fill: #ff2e88; text-anchor: middle; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #17102e; }
+  .stage {
+    position: relative;
+    width: 1080px; height: 1080px;
+    background: linear-gradient(165deg, #1b1136 0%, #241545 52%, #150d2b 100%);
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  .stage::before {
+    content: "";
+    position: absolute; left: 50%; top: 520px;
+    width: 900px; height: 900px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, rgba(255,45,146,0.16) 0%, rgba(255,45,146,0) 62%);
+  }
+  .toplabel {
+    position: absolute; left: 0; top: 52px; width: 1080px;
+    text-align: center;
+    color: #cfc3f0; font-size: 27px; font-weight: 700;
+    letter-spacing: 12px;
+  }
+  .ticket {
+    position: absolute; left: 40px; top: 118px;
+    width: 1000px; height: 782px;
+    background: #ffffff;
+    border-radius: 26px;
+    box-shadow: 0 34px 90px rgba(0,0,0,0.55);
+    overflow: hidden;
+  }
+  /* header band */
+  .header {
+    height: 118px;
+    background: linear-gradient(90deg, #ff2d92 0%, #e6007e 70%, #d1006f 100%);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 34px 0 30px;
+  }
+  .brand { display: flex; align-items: center; }
+  .brandname { color: #fff; font-size: 46px; font-weight: 900; letter-spacing: 0.5px; line-height: 1; }
+  .brandsub { color: #ffd3e8; font-size: 21px; font-weight: 700; letter-spacing: 9px; margin-top: 5px; }
+  .headright { text-align: right; }
+  .bp { color: #fff; font-size: 27px; font-weight: 900; letter-spacing: 3px; }
+  .bpdate { color: #ffd3e8; font-size: 19px; font-weight: 700; letter-spacing: 2px; margin-top: 6px; }
+  /* body */
+  .body { display: flex; height: 664px; }
+  .main { flex: 1; padding: 30px 36px 26px 38px; }
+  .lbl { color: #9a9a9a; font-size: 14px; font-weight: 700; letter-spacing: 2.5px; }
+  .val { color: #141414; font-size: 29px; font-weight: 800; letter-spacing: 0.5px; white-space: nowrap; margin-top: 4px; }
+  .rowA { display: flex; gap: 18px; }
+  .rowA .col { flex: 1; }
+  .rowA .col.date { flex: 1.35; }
+  .rule { height: 1px; background: #e3e3e3; margin: 24px 0 22px 0; }
+  /* route */
+  .route { display: flex; align-items: flex-end; }
+  .code { color: #141414; font-size: 74px; font-weight: 900; line-height: 0.95; letter-spacing: 1px; }
+  .city { color: #555; font-size: 22px; font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; white-space: nowrap; }
+  .arrow { flex: 1; text-align: center; padding-bottom: 26px; }
+  .arrow .dash { border-top: 2px dashed #c9c9c9; margin: 0 14px; position: relative; top: -8px; }
+  .rowC { display: flex; gap: 18px; margin-top: 24px; }
+  .rowC .col { flex: 1; }
+  .fare .val { color: #e6007e; }
+  .struck { color: #d21f1f; font-size: 19px; font-weight: 800; text-decoration: line-through; margin-left: 6px; }
+  .remarks {
+    margin-top: 22px;
+    background: #f4f4f4; border-radius: 8px;
+    padding: 13px 16px;
+    font-family: "DejaVu Sans Mono", Courier, monospace;
+    font-size: 21px; font-weight: 700; color: #222; letter-spacing: 0.5px;
+  }
+  .barcode { margin-top: 22px; }
+  .bcnum {
+    font-family: "DejaVu Sans Mono", Courier, monospace;
+    font-size: 17px; font-weight: 700; color: #333; letter-spacing: 2px; margin-top: 7px;
+  }
+  /* perforation */
+  .perf {
+    width: 0; border-left: 2px dashed #c4c4c4; position: relative;
+  }
+  .notch {
+    position: absolute; left: -15px; width: 28px; height: 28px;
+    background: #1d1238; border-radius: 50%;
+  }
+  .notch.top { top: -14px; }
+  .notch.bot { bottom: -14px; }
+  /* stub */
+  .stub { width: 238px; padding: 26px 22px 22px 24px; }
+  .stub .brandname2 { color: #e6007e; font-size: 21px; font-weight: 900; }
+  .stub .bp2 { color: #999; font-size: 12px; font-weight: 700; letter-spacing: 2px; margin-top: 3px; }
+  .stub .srow { margin-top: 15px; }
+  .stub .lbl { font-size: 11px; }
+  .stub .val { font-size: 20px; margin-top: 2px; }
+  .stub .barcode2 { margin-top: 18px; }
+  .stub .bcnum2 {
+    font-family: "DejaVu Sans Mono", Courier, monospace;
+    font-size: 13px; font-weight: 700; color: #333; letter-spacing: 1px; margin-top: 5px;
+  }
+  .foot {
+    position: absolute; left: 0; top: 936px; width: 1080px;
+    text-align: center;
+    color: #b9a8e0; font-size: 23px; font-weight: 700; letter-spacing: 5px;
+  }
 </style>
 </head>
 <body>
-<svg viewBox="0 0 1080 1080" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2b0a4a"/>
-      <stop offset="0.45" stop-color="#7b1e6b"/>
-      <stop offset="0.72" stop-color="#ff5e78"/>
-      <stop offset="1" stop-color="#ffb347"/>
-    </linearGradient>
-    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#ff8a5c"/>
-      <stop offset="0.35" stop-color="#c94b7c"/>
-      <stop offset="1" stop-color="#3b1a5e"/>
-    </linearGradient>
-    <radialGradient id="sun" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0" stop-color="#fff3b0"/>
-      <stop offset="0.6" stop-color="#ffd166"/>
-      <stop offset="1" stop-color="#ff9a5c"/>
-    </radialGradient>
-    <linearGradient id="chain" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0" stop-color="#ffd700"/>
-      <stop offset="0.5" stop-color="#fff3a0"/>
-      <stop offset="1" stop-color="#ffd700"/>
-    </linearGradient>
-  </defs>
+<div class="stage">
+  <div class="toplabel">BOARDING PASS</div>
 
-  <!-- sky -->
-  <rect x="0" y="0" width="1080" height="1080" fill="url(#sky)"/>
-  <!-- sun: big halo behind the ghost -->
-  <circle cx="540" cy="540" r="270" fill="url(#sun)"/>
-  <!-- clouds -->
-  <ellipse cx="180" cy="180" rx="120" ry="26" fill="#ffffff" opacity="0.28"/>
-  <ellipse cx="900" cy="120" rx="140" ry="24" fill="#ffffff" opacity="0.22"/>
-  <ellipse cx="830" cy="240" rx="90" ry="20" fill="#ffffff" opacity="0.18"/>
-  <!-- sea -->
-  <rect x="0" y="660" width="1080" height="200" fill="url(#sea)"/>
-  <rect x="120" y="700" width="260" height="8" fill="#ffffff" opacity="0.35"/>
-  <rect x="700" y="740" width="300" height="8" fill="#ffffff" opacity="0.3"/>
-  <rect x="330" y="790" width="420" height="8" fill="#ffffff" opacity="0.25"/>
+  <div class="ticket">
+    <div class="header">
+      <div class="brand">
+        <svg width="86" height="86" viewBox="0 0 100 100" style="margin-right:16px;">
+          <path d="M50 5 C27 5 13 23 13 47 L13 82 L25 72 L37 82 L50 72 L63 82 L75 72 L87 82 L87 47 C87 23 73 5 50 5 Z"
+                fill="#ffffff" stroke="#14142a" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M36 33 L39.5 41 L47 44.5 L39.5 48 L36 56 L32.5 48 L25 44.5 L32.5 41 Z" fill="#14142a"/>
+          <path d="M64 33 L67.5 41 L75 44.5 L67.5 48 L64 56 L60.5 48 L53 44.5 L60.5 41 Z" fill="#14142a"/>
+          <path d="M44 58 Q50 63 56 58" fill="none" stroke="#14142a" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="68" r="9" fill="#ffffff" stroke="#14142a" stroke-width="2.5"/>
+          <path d="M50 62.5 L51.6 66.4 L55.7 66.6 L52.6 69.2 L53.7 73.2 L50 71 L46.3 73.2 L47.4 69.2 L44.3 66.6 L48.4 66.4 Z" fill="#e6007e"/>
+        </svg>
+        <div>
+          <div class="brandname">make.fun</div>
+          <div class="brandsub">AIRLINES</div>
+        </div>
+      </div>
+      <div class="headright">
+        <div class="bp">BOARDING PASS</div>
+        <div class="bpdate">GTA 6 &nbsp;·&nbsp; 26 MAY 2026</div>
+      </div>
+    </div>
 
-  <!-- skyline -->
-  <g fill="#1a0b2e">
-    <rect x="0" y="800" width="70" height="280"/>
-    <rect x="70" y="840" width="90" height="240"/>
-    <rect x="160" y="790" width="80" height="290"/>
-    <rect x="240" y="850" width="110" height="230"/>
-    <rect x="350" y="810" width="70" height="270"/>
-    <rect x="660" y="820" width="90" height="260"/>
-    <rect x="750" y="780" width="80" height="300"/>
-    <rect x="830" y="840" width="100" height="240"/>
-    <rect x="930" y="800" width="70" height="280"/>
-    <rect x="1000" y="850" width="80" height="230"/>
-  </g>
-  <!-- lit windows -->
-  <g fill="#ffd166" opacity="0.9">
-    <rect x="20" y="830" width="14" height="18"/><rect x="45" y="870" width="14" height="18"/>
-    <rect x="95" y="870" width="14" height="18"/><rect x="125" y="900" width="14" height="18"/>
-    <rect x="180" y="820" width="14" height="18"/><rect x="205" y="860" width="14" height="18"/>
-    <rect x="265" y="880" width="14" height="18"/><rect x="305" y="910" width="14" height="18"/>
-    <rect x="685" y="850" width="14" height="18"/><rect x="715" y="890" width="14" height="18"/>
-    <rect x="775" y="810" width="14" height="18"/><rect x="800" y="850" width="14" height="18"/>
-    <rect x="855" y="870" width="14" height="18"/><rect x="895" y="900" width="14" height="18"/>
-    <rect x="950" y="830" width="14" height="18"/><rect x="1020" y="880" width="14" height="18"/>
-  </g>
-  <!-- neon make.fun sign on a rooftop -->
-  <rect x="430" y="770" width="220" height="52" rx="8" fill="#12041f" stroke="#ff2e88" stroke-width="4"/>
-  <text x="540" y="808" font-size="34" class="neon">make.fun</text>
+    <div class="body">
+      <div class="main">
+        <div class="rowA">
+          <div class="col"><div class="lbl">PASSENGER</div><div class="val">MR. GHOST</div></div>
+          <div class="col"><div class="lbl">FLIGHT</div><div class="val">MK 006</div></div>
+          <div class="col date"><div class="lbl">DATE</div><div class="val">26 MAY 2026</div></div>
+          <div class="col"><div class="lbl">CLASS</div><div class="val">GAMER</div></div>
+        </div>
 
-  <!-- palm trees -->
-  <g stroke="#1a0b2e" stroke-width="14" fill="none" stroke-linecap="round">
-    <path d="M60 860 Q70 720 95 640"/>
-    <path d="M95 640 Q60 600 20 610"/>
-    <path d="M95 640 Q130 595 170 610"/>
-    <path d="M95 640 Q95 590 60 570"/>
-    <path d="M95 640 Q110 585 150 575"/>
-    <path d="M1020 860 Q1010 720 985 640"/>
-    <path d="M985 640 Q1020 600 1060 610"/>
-    <path d="M985 640 Q950 595 910 610"/>
-    <path d="M985 640 Q985 590 1020 570"/>
-    <path d="M985 640 Q970 585 930 575"/>
-  </g>
+        <div class="rule"></div>
 
-  <!-- TOP CAPTION -->
-  <text x="540" y="92" font-size="82" class="cap">WAITED 13 YEARS</text>
-  <text x="540" y="178" font-size="82" class="cap">FOR GTA 6</text>
+        <div class="route">
+          <div>
+            <div class="lbl">FROM</div>
+            <div class="code">COU</div>
+            <div class="city">YOUR COUCH</div>
+          </div>
+          <div class="arrow">
+            <svg width="120" height="34" viewBox="0 0 120 34">
+              <path d="M8 22 L52 22 L60 15 L68 15 L68 22 L104 22 L112 25 L104 28 L68 28 L68 33 L60 33 L52 28 L8 28 Z" fill="#e6007e"/>
+            </svg>
+            <div class="dash"></div>
+          </div>
+          <div style="text-align:right;">
+            <div class="lbl">TO</div>
+            <div class="code">VCI</div>
+            <div class="city">LEONIDA — VICE CITY</div>
+          </div>
+        </div>
 
-  <!-- THE GHOST (make.fun mascot) -->
-  <g transform="translate(540 520)">
-    <!-- body -->
-    <path d="M0 -290
-             C -105 -290 -165 -215 -165 -110
-             L -165 210
-             L -124 172 L -83 210 L -42 172 L 0 205 L 42 172 L 83 210 L 124 172 L 165 210
-             L 165 -110
-             C 165 -215 105 -290 0 -290 Z"
-          fill="#ffffff" stroke="#000000" stroke-width="12" stroke-linejoin="round"/>
-    <!-- sparkle eyes (four-pointed stars) -->
-    <path d="M-62 -150 L -52 -120 L -22 -110 L -52 -100 L -62 -70 L -72 -100 L -102 -110 L -72 -120 Z" fill="#000000"/>
-    <path d="M62 -150 L 72 -120 L 102 -110 L 72 -100 L 62 -70 L 52 -100 L 22 -110 L 52 -120 Z" fill="#000000"/>
-    <!-- smile -->
-    <path d="M-28 -58 Q 0 -38 28 -58" fill="none" stroke="#000000" stroke-width="9" stroke-linecap="round"/>
-    <!-- gold chain -->
-    <path d="M-95 -40 Q 0 45 95 -40" fill="none" stroke="url(#chain)" stroke-width="10" stroke-linecap="round"/>
-    <circle cx="0" cy="18" r="16" fill="#ffd700" stroke="#000000" stroke-width="5"/>
-    <text x="0" y="26" font-size="20" text-anchor="middle" font-family="Arial Black, Arial, sans-serif" font-weight="900" fill="#000000">VI</text>
-    <!-- left arm + controller -->
-    <path d="M-160 -20 Q -215 10 -205 60" fill="none" stroke="#000000" stroke-width="12" stroke-linecap="round"/>
-    <g transform="translate(-205 62) rotate(-12)">
-      <rect x="-52" y="-26" width="104" height="58" rx="16" fill="#2b2b3a" stroke="#000000" stroke-width="6"/>
-      <circle cx="-26" cy="0" r="9" fill="#ff2e88"/>
-      <circle cx="26" cy="-8" r="6" fill="#ffd166"/>
-      <circle cx="26" cy="10" r="6" fill="#7ee0ff"/>
-    </g>
-    <!-- right arm + magenta star coin -->
-    <path d="M160 -20 Q 215 10 205 60" fill="none" stroke="#000000" stroke-width="12" stroke-linecap="round"/>
-    <g transform="translate(208 78)">
-      <circle r="46" fill="#e91e8c" stroke="#000000" stroke-width="7"/>
-      <path d="M0 -30 L 8 -10 L 29 -8 L 13 6 L 18 27 L 0 16 L -18 27 L -13 6 L -29 -8 L -8 -10 Z" fill="#ffffff"/>
-    </g>
-    <!-- little round hand on the coin -->
-    <circle cx="196" cy="58" r="18" fill="#ffffff" stroke="#000000" stroke-width="7"/>
-  </g>
+        <div class="rowC">
+          <div class="col"><div class="lbl">GATE</div><div class="val">6</div></div>
+          <div class="col"><div class="lbl">SEAT</div><div class="val">VI</div></div>
+          <div class="col"><div class="lbl">BOARDING</div><div class="val">18:00</div></div>
+          <div class="col fare"><div class="lbl">FARE</div><div class="val">$70<span class="struck">$1,200</span></div></div>
+        </div>
 
-  <!-- BOTTOM CAPTION -->
-  <text x="540" y="950" font-size="74" class="cap">DIED WAITING.</text>
-  <text x="540" y="1032" font-size="74" class="cap">STILL PLAYING DAY ONE.</text>
-</svg>
+        <div class="remarks">REMARKS: SAME SUNSET. NO JET LAG.</div>
+
+        <div class="barcode">
+          <svg id="barcode" height="62" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="bcnum">MK 006 &nbsp;·&nbsp; 260526 &nbsp;·&nbsp; VCI &nbsp;·&nbsp; VI &nbsp;·&nbsp; GHOST</div>
+        </div>
+      </div>
+
+      <div class="perf">
+        <div class="notch top"></div>
+        <div class="notch bot"></div>
+      </div>
+
+      <div class="stub">
+        <div class="brandname2">make.fun</div>
+        <div class="bp2">BOARDING PASS</div>
+        <div class="srow"><div class="lbl">PASSENGER</div><div class="val">MR. GHOST</div></div>
+        <div class="srow"><div class="lbl">FLIGHT</div><div class="val">MK 006</div></div>
+        <div class="srow"><div class="lbl">ROUTE</div><div class="val">COU → VCI</div></div>
+        <div class="srow"><div class="lbl">DATE</div><div class="val">26 MAY 2026</div></div>
+        <div class="srow"><div class="lbl">GATE / SEAT</div><div class="val">6 / VI</div></div>
+        <div class="barcode2">
+          <svg id="barcode2" height="42" xmlns="http://www.w3.org/2000/svg"></svg>
+          <div class="bcnum2">MK006 · 260526</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">GATE 6 &nbsp;·&nbsp; SEAT VI &nbsp;·&nbsp; SEE YOU IN LEONIDA</div>
+</div>
+
+<script>
+(function () {
+  var NS = 'http://www.w3.org/2000/svg';
+  function draw(id, seq, gap, h) {
+    var svg = document.getElementById(id);
+    var x = 0;
+    for (var i = 0; i < seq.length; i++) {
+      var w = parseInt(seq.charAt(i), 10);
+      var r = document.createElementNS(NS, 'rect');
+      r.setAttribute('x', x);
+      r.setAttribute('y', 0);
+      r.setAttribute('width', w);
+      r.setAttribute('height', h);
+      r.setAttribute('fill', '#111111');
+      svg.appendChild(r);
+      x += w + gap;
+    }
+    svg.setAttribute('width', x);
+    svg.setAttribute('viewBox', '0 0 ' + x + ' ' + h);
+  }
+  draw('barcode',  '5346839754863957486395748639574863957486395748639574863957', 3, 62);
+  draw('barcode2', '463957486395748639574863957486', 2, 42);
+})();
+</script>
 </body>
 </html>
